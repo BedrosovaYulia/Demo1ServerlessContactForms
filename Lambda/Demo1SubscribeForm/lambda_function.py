@@ -16,36 +16,9 @@ def lambda_handler(event, context):
     item['email'] = event['queryStringParameters']['emailsub']
     TABLE.put_item(Item=item)
     
-    #send email
-    response = SES.send_email(
-        Destination={
-            'ToAddresses': [
-            item['email'],
-            ],
-            'CcAddresses': [
-                'y@bedrosova.ru',
-            ],
-        },
-        Message={
-            'Body': {
-                'Html': {
-                    'Charset': 'UTF-8',
-                    'Data': 'This message body contains HTML formatting. It can, for example, contain links like this one: <a class="ulink" href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide" target="_blank">Amazon SES Developer Guide</a>.',
-                },
-                'Text': {
-                    'Charset': 'UTF-8',
-                    'Data': 'This is the message body in text format.',
-                },
-            },
-            'Subject': {
-                'Charset': 'UTF-8',
-                'Data': 'Test email',
-            },
-        },
-        Source='y@bedrosova.ru'
+    response = SES.verify_email_identity(
+        EmailAddress=item['email']
     )
-    
-    print(response)
     
     
     return {
