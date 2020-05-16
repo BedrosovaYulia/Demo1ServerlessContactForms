@@ -9,3 +9,7 @@ Tasks:
 
 https://www.youtube.com/watch?v=qBOsinOIksk&feature=youtu.be
 
+The application uses 2 DynamoDB tables:
+- Demo1Form2 with partition key: email, date;
+- Demo1SubscribeForm with key: email
+
