@@ -21,4 +21,4 @@ Resources:
       Environment:
         Variables:
           Region: us-east-1
-          Table: Demo1Form1
+          Table: Demo1Form2
